@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace OkalaCryptoQuote.Domain.Base;
+﻿namespace OkalaCryptoQuote.Domain.Base;
 
 public class Result
 {
@@ -33,9 +31,7 @@ public class Result
 
 public class Result<TValue>(TValue? value, bool isSuccess, Error error) : Result(isSuccess, error)
 {
-    public TValue Value => IsSuccess
-        ? value!
-        : throw new InvalidOperationException("The value of a failure result can't be accessed.");
+    public TValue? Value => value;
 
     public static implicit operator Result<TValue>(TValue? value) =>
         value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
