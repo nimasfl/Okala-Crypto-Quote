@@ -1,6 +1,4 @@
-﻿using OkalaCryptoQuote.Domain.Features.CoinMarketCap;
-
-namespace OkalaCryptoQuote.Infrastructure.HttpClients;
+﻿namespace OkalaCryptoQuote.Infrastructure.HttpClients;
 
 public sealed class CoinMarketCapApi(HttpClient httpClient) : ICoinMarketCapApi
 {

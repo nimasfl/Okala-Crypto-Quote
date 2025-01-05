@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace OkalaCryptoQuote.Infrastructure.HttpClients;
+﻿namespace OkalaCryptoQuote.Infrastructure.HttpClients;
 
 public sealed class ExchangeRatesApi(HttpClient httpClient, IOptions<ExchangeRatesOptions> options) : IExchangeRatesApi
 {

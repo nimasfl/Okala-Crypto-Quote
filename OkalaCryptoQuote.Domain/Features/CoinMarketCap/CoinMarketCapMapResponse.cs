@@ -14,7 +14,6 @@ public record CoinMarketCapMapStatusResponse
 
 public record CoinMarketCryptoMetadata
 {
-    public int Id { get; set; }
     public int Rank { get; set; }
     public string Symbol { get; set; }
     public string Slug { get; set; }
@@ -26,7 +25,4 @@ public record CoinMarketCryptoMetadata
     public Dictionary<string, CoinMarketCryptoPriceModel> Quote { get; set; }
 }
 
-public record CoinMarketCryptoPriceModel
-{
-    public decimal Price { get; set; } = 0;
-}
+public record CoinMarketCryptoPriceModel(decimal Price = 0);

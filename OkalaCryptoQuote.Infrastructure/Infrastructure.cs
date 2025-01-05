@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using OkalaCryptoQuote.Domain.Features.CoinMarketCap;
-using OkalaCryptoQuote.Infrastructure.HttpClients;
-using Refit;
-
-namespace OkalaCryptoQuote.Infrastructure;
+﻿namespace OkalaCryptoQuote.Infrastructure;
 
 public static class Infrastructure
 {

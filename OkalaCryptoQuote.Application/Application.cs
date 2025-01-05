@@ -1,5 +1,4 @@
-﻿using OkalaCryptoQuote.Application.Features.Quotes;
-using OkalaCryptoQuote.Application.Features.Quotes.GetQuote;
+﻿using OkalaCryptoQuote.Application.Features.Quotes.GetQuote;
 
 namespace OkalaCryptoQuote.Application;
 
