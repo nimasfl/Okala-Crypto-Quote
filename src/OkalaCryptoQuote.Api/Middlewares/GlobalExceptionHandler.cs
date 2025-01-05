@@ -1,7 +1,5 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using OkalaCryptoQuote.Domain.Base;
 
 namespace OkalaCryptoQuote.Api.Middlewares;
 
@@ -16,7 +14,7 @@ internal sealed class GlobalExceptionHandler
         var problemDetails = new ProblemDetails
         {
             Status = StatusCodes.Status500InternalServerError,
-            Title = "Internal Server Error",
+            Title = "Internal Server Error"
         };
         httpContext.Response.StatusCode = problemDetails.Status!.Value;
 

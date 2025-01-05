@@ -6,7 +6,7 @@ namespace OkalaCryptoQuote.Api;
 
 public static class Api
 {
-    public static IServiceCollection AddApi(this IServiceCollection services)
+    public static void AddApi(this IServiceCollection services)
     {
         services.AddControllers();
         services
@@ -16,7 +16,5 @@ public static class Api
             .ConfigureOption<CoinMarketCapOptions>(CoinMarketCapOptions.SectionName)
             .AddEndpointsApiExplorer()
             .AddSwaggerGen();
-
-        return services;
     }
 }

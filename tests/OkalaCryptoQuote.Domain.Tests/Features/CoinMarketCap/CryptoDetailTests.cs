@@ -52,7 +52,7 @@ public class CryptoDetailTests
                 { "USD", new CoinMarketCryptoPriceModel { Price = 100 } }
             }
         };
-        var baseCurrency = "USD";
+        const string baseCurrency = "USD";
 
         var cryptoDetail = CryptoDetail.FromCoinMarketCapMetadata(metadata, baseCurrency);
 
@@ -70,7 +70,7 @@ public class CryptoDetailTests
             Slug = "bitcoin",
             Quote = new Dictionary<string, CoinMarketCryptoPriceModel>()
         };
-        var baseCurrency = "USD";
+        const string baseCurrency = "USD";
 
         var cryptoDetail = CryptoDetail.FromCoinMarketCapMetadata(metadata, baseCurrency);
 
@@ -88,7 +88,7 @@ public class CryptoDetailTests
             Slug = "ripple",
             Quote = null!
         };
-        var baseCurrency = "USD";
+        const string baseCurrency = "USD";
 
         var cryptoDetail = CryptoDetail.FromCoinMarketCapMetadata(metadata, baseCurrency);
 
