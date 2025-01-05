@@ -17,5 +17,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.AddEndpoints();
+app.MapControllers();
+
 app.Run();

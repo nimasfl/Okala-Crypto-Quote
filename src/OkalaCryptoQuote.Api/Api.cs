@@ -9,6 +9,7 @@ public static class Api
 {
     public static IServiceCollection AddApi(this IServiceCollection services)
     {
+        services.AddControllers();
         services
             .AddExceptionHandler<GlobalExceptionHandler>()
             .AddValidatorsFromAssembly(Application.Application.Assembly)
@@ -16,11 +17,9 @@ public static class Api
             .ConfigureOption<ExchangeRatesOptions>(ExchangeRatesOptions.SectionName)
             .ConfigureOption<CoinMarketCapOptions>(CoinMarketCapOptions.SectionName)
             .AddEndpointsApiExplorer()
-            .AddEndpoints()
-            .AddSwaggerGen();
+            .AddSwaggerGen()
+            .AddValidatorsFromAssemblyContaining<Program>();
 
         return services;
     }
-
-
 }

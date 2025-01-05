@@ -5,7 +5,7 @@ using OkalaCryptoQuote.Domain.Base;
 
 namespace OkalaCryptoQuote.Api.Middlewares;
 
-internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
+internal sealed class GlobalExceptionHandler
     : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(
@@ -13,12 +13,11 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
         Exception exception,
         CancellationToken cancellationToken)
     {
-        var problemDetails = exception switch
+        var problemDetails = new ProblemDetails
         {
-            BadHttpRequestException e => HandleBadRequest(e),
-            _ => HandleInternalServerError()
+            Status = StatusCodes.Status500InternalServerError,
+            Title = "Internal Server Error",
         };
-
         httpContext.Response.StatusCode = problemDetails.Status!.Value;
 
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
@@ -26,22 +25,4 @@ internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> log
         return true;
     }
 
-    private ProblemDetails HandleBadRequest(BadHttpRequestException exception)
-    {
-        return new ProblemDetails
-        {
-            Status = StatusCodes.Status400BadRequest,
-            Title = "Bad Request",
-            Detail = exception.Message
-        };
-    }
-
-    private ProblemDetails HandleInternalServerError()
-    {
-        return new ProblemDetails
-        {
-            Status = StatusCodes.Status500InternalServerError,
-            Title = "Internal Server Error",
-        };
-    }
 }
