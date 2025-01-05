@@ -9,7 +9,7 @@ public class GetQuoteHandler(
     ICoinMarketCapApi coinMarketCapApi,
     IOptions<ExchangeRatesOptions> exchangeRatesOption) : IGetQuoteHandler
 {
-    public async Task<Result<GetQuoteResponse>> GetQuote(GetQuoteRequest request, CancellationToken ct)
+    public async Task<Result<GetQuoteResponse>> GetQuote(GetQuoteRequest request, CancellationToken ct = default)
     {
         var ratesResult = await exchangeRatesApi.GetLatestRates(ct);
         if (ratesResult.IsSuccess == false)

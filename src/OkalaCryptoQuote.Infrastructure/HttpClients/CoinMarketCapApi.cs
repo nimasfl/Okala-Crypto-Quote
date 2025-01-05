@@ -3,7 +3,7 @@
 public sealed class CoinMarketCapApi(HttpClient httpClient, IOptions<ExchangeRatesOptions> exchangeRatesOption)
     : ICoinMarketCapApi
 {
-    public async Task<Result<CryptoDetail>> GetCryptoDetail(string cryptoCode, CancellationToken ct)
+    public async Task<Result<CryptoDetail>> GetCryptoDetail(string cryptoCode, CancellationToken ct = default)
     {
         const string url = "/v2/cryptocurrency/quotes/latest?symbol=";
         CoinMarketCapMapResponse? result;

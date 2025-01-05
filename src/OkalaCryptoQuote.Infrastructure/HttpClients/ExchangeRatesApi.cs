@@ -2,7 +2,7 @@
 
 public sealed class ExchangeRatesApi(HttpClient httpClient, IOptions<ExchangeRatesOptions> options) : IExchangeRatesApi
 {
-    public async Task<Result<LatestExchangeRateResponse>> GetLatestRates(CancellationToken ct)
+    public async Task<Result<LatestExchangeRateResponse>> GetLatestRates(CancellationToken ct = default)
     {
         var currencies = new List<string> { options.Value.BaseCurrency };
         currencies.AddRange(options.Value.Currencies.Split(','));

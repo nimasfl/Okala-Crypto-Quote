@@ -4,5 +4,5 @@ namespace OkalaCryptoQuote.Application.Abstractions;
 
 public interface ICoinMarketCapApi
 {
-    Task<Result<CryptoDetail>> GetCryptoDetail(string cryptoCode, CancellationToken ct);
+    Task<Result<CryptoDetail>> GetCryptoDetail(string cryptoCode, CancellationToken ct = default);
 }
