@@ -76,7 +76,7 @@ public class ResultTests
         Assert.NotNull(result.Error);
     }
 
-    public class TestClass();
+    public class TestClass;
 
     [Fact]
     public void GenericFailure_WithErrorAndReferenceTypeGeneric_ValueIsNull()

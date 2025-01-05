@@ -59,7 +59,7 @@ public class CoinMarketCapApiTests
         var exchangeRatesOptions = A.Fake<IOptions<ExchangeRatesOptions>>();
         var api = new CoinMarketCapApi(fakeHttpClient.HttpClient, exchangeRatesOptions);
 
-        var cryptoCode = "BTC";
+        const string cryptoCode = "BTC";
         var ct = CancellationToken.None;
 
 

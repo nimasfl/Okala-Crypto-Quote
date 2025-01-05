@@ -1,6 +1,4 @@
 ﻿using FakeItEasy;
-using System.Net;
-using System.Text.Json;
 using Microsoft.Extensions.Options;
 using OkalaCryptoQuote.Domain.Features.ExchangeRates;
 using OkalaCryptoQuote.Infrastructure.HttpClients;

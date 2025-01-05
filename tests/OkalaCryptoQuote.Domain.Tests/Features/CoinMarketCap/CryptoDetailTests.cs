@@ -7,9 +7,9 @@ public class CryptoDetailTests
     [Fact]
     public void Constructor_WithValidParameters_SymbolIsAsExpected()
     {
-        var symbol = "BTC";
-        var slug = "bitcoin";
-        var price = 100m;
+        const string symbol = "BTC";
+        const string slug = "bitcoin";
+        const decimal price = 100m;
 
         var cryptoDetail = new CryptoDetail(symbol, slug, price);
 
@@ -19,9 +19,9 @@ public class CryptoDetailTests
     [Fact]
     public void Constructor_WithValidParameters_SlugIsAsExpected()
     {
-        var symbol = "BTC";
-        var slug = "bitcoin";
-        var price = 100m;
+        const string symbol = "BTC";
+        const string slug = "bitcoin";
+        const decimal price = 100m;
 
         var cryptoDetail = new CryptoDetail(symbol, slug, price);
 
@@ -31,9 +31,9 @@ public class CryptoDetailTests
     [Fact]
     public void Constructor_WithValidParameters_PriceIsAsExpected()
     {
-        var symbol = "BTC";
-        var slug = "bitcoin";
-        var price = 100m;
+        const string symbol = "BTC";
+        const string slug = "bitcoin";
+        const decimal price = 100m;
 
         var cryptoDetail = new CryptoDetail(symbol, slug, price);
 
