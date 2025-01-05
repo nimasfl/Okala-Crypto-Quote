@@ -11,17 +11,7 @@ public class QuotesEndpoints : IEndpoint
             .MapGroup(Tags.Quotes)
             .WithTags(Tags.Quotes);
 
-        routes.MapGet("/", GetQuote).AddEndpointFilter(async (context, next) =>
-        {
-            try
-            {
-                return await next(context);
-            }
-            catch (BadHttpRequestException ex)
-            {
-                return Results.BadRequest(new { error = ex.Message });
-            }
-        });
+        routes.MapGet("/", GetQuote);
     }
 
     private static Task<Result<GetQuoteResponse>> GetQuote([AsParameters] GetQuoteRequest request,
