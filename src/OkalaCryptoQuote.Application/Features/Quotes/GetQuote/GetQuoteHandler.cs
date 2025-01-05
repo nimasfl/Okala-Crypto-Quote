@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using OkalaCryptoQuote.Application.Abstractions;
-using OkalaCryptoQuote.Domain.Features.Quotes;
 
 namespace OkalaCryptoQuote.Application.Features.Quotes.GetQuote;
 
@@ -11,13 +10,6 @@ public class GetQuoteHandler(
 {
     public async Task<Result<GetQuoteResponse>> GetQuote(GetQuoteRequest request, CancellationToken ct)
     {
-        Console.WriteLine(request.CryptoCode);
-        var validationResult = ValidateRequest(request);
-        if (validationResult.IsSuccess == false)
-        {
-            return Result.Failure<GetQuoteResponse>(validationResult.Error);
-        }
-
         var ratesResult = await exchangeRatesApi.GetLatestRates(ct);
         if (ratesResult.IsSuccess == false)
         {
@@ -42,15 +34,4 @@ public class GetQuoteHandler(
 
         return new GetQuoteResponse(cryptoInfoResult.Value.Slug, cryptoInfoResult.Value.Symbol, prices);
     }
-
-    private static Result ValidateRequest(GetQuoteRequest request)
-    {
-        if (string.IsNullOrWhiteSpace(request.CryptoCode))
-        {
-            return QuoteError.CryptoCodeIsEmpty;
-        }
-
-        return Result.Success();
-    }
-
 }

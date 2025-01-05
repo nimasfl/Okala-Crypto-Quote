@@ -11,12 +11,12 @@ public class Result
         }
 
         IsSuccess = isSuccess;
-        Error = error == Error.None ? null : error;
+        Error = error == Error.None ? null! : error;
     }
 
     public bool IsSuccess { get; }
 
-    public Error? Error { get; }
+    public Error Error { get; }
 
     public static Result Success() => new(true, Error.None);
 
@@ -31,7 +31,7 @@ public class Result
 
 public class Result<TValue>(TValue? value, bool isSuccess, Error error) : Result(isSuccess, error)
 {
-    public TValue? Value => value;
+    public TValue Value => value!;
 
     public static implicit operator Result<TValue>(TValue? value) =>
         value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
