@@ -25,4 +25,4 @@ public record CoinMarketCryptoMetadata
     public Dictionary<string, CoinMarketCryptoPriceModel> Quote { get; set; }
 }
 
-public record CoinMarketCryptoPriceModel(decimal Price = 0);
+public record CoinMarketCryptoPriceModel(decimal? Price = 0);
