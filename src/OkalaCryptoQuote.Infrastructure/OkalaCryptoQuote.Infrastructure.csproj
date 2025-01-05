@@ -9,12 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\OkalaCryptoQuote.Domain\OkalaCryptoQuote.Domain.csproj" />
+        <ProjectReference Include="..\OkalaCryptoQuote.Application\OkalaCryptoQuote.Application.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-        <HintPath>..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.3\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-      </Reference>
+      <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
     </ItemGroup>
+
 </Project>

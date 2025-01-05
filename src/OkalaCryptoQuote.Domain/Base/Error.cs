@@ -29,6 +29,5 @@ public record Error(string Code, string Description, ErrorType Type)
     public static Error Invalid(string featureName, string description, [CallerMemberName] string code = "") =>
         new($"{featureName}.{code}", description, ErrorType.Invalid);
 
-
     public static implicit operator Result(Error error) => Result.Failure(error);
 }

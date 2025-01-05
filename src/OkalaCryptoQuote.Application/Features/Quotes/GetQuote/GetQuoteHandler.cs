@@ -11,6 +11,7 @@ public class GetQuoteHandler(
 {
     public async Task<Result<GetQuoteResponse>> GetQuote(GetQuoteRequest request, CancellationToken ct)
     {
+        Console.WriteLine(request.CryptoCode);
         var validationResult = ValidateRequest(request);
         if (validationResult.IsSuccess == false)
         {
@@ -26,7 +27,7 @@ public class GetQuoteHandler(
         var cryptoInfoResult = await coinMarketCapApi.GetCryptoDetail(request.CryptoCode, ct);
         if (cryptoInfoResult.IsSuccess == false)
         {
-            return Result.Failure<GetQuoteResponse>(cryptoInfoResult.Error);
+            return cryptoInfoResult.Error;
         }
 
         var prices = new Dictionary<string, decimal?>();

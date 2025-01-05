@@ -33,7 +33,6 @@ public class Result
 
 public class Result<TValue>(TValue? value, bool isSuccess, Error error) : Result(isSuccess, error)
 {
-    [NotNull]
     public TValue Value => IsSuccess
         ? value!
         : throw new InvalidOperationException("The value of a failure result can't be accessed.");
@@ -46,4 +45,6 @@ public class Result<TValue>(TValue? value, bool isSuccess, Error error) : Result
 
     public static Result<TValue> ValidationFailure(Error error) =>
         new(default, false, error);
+
+
 }
