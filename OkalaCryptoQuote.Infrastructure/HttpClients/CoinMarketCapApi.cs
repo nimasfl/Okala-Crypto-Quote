@@ -1,6 +1,7 @@
 ﻿namespace OkalaCryptoQuote.Infrastructure.HttpClients;
 
-public sealed class CoinMarketCapApi(HttpClient httpClient) : ICoinMarketCapApi
+public sealed class CoinMarketCapApi(HttpClient httpClient, IOptions<ExchangeRatesOptions> exchangeRatesOption)
+    : ICoinMarketCapApi
 {
     public async Task<Result<CryptoDetail>> GetCryptoDetail(string cryptoCode, CancellationToken ct)
     {
@@ -26,6 +27,6 @@ public sealed class CoinMarketCapApi(HttpClient httpClient) : ICoinMarketCapApi
             return CoinMarketCapError.CryptoCodeNotFound;
         }
 
-        return CryptoDetail.FromCoinMarketCapMetadata(data);
+        return CryptoDetail.FromCoinMarketCapMetadata(data, exchangeRatesOption.Value.BaseCurrency);
     }
 }

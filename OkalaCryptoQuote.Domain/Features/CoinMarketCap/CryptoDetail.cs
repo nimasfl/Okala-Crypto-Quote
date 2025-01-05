@@ -2,10 +2,10 @@
 
 public record CryptoDetail(string Symbol, string Slug, decimal? Price)
 {
-    public static CryptoDetail FromCoinMarketCapMetadata(CoinMarketCryptoMetadata coinMarketCap)
+    public static CryptoDetail FromCoinMarketCapMetadata(CoinMarketCryptoMetadata coinMarketCap, string baseCurrency)
     {
         decimal? price = null;
-        if (coinMarketCap.Quote.TryGetValue("USD", out var usd))
+        if (coinMarketCap.Quote.TryGetValue(baseCurrency, out var usd))
         {
             price = usd.Price;
         }

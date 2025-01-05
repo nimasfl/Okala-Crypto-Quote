@@ -4,7 +4,7 @@ public sealed class ExchangeRatesApi(HttpClient httpClient, IOptions<ExchangeRat
 {
     public async Task<Result<LatestExchangeRateResponse>> GetLatestRates(CancellationToken ct)
     {
-        var currencies = new List<string> { "USD" };
+        var currencies = new List<string> { options.Value.BaseCurrency };
         currencies.AddRange(options.Value.Currencies.Split(','));
         var currenciesString = string.Join(',', currencies);
         try

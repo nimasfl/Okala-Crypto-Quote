@@ -1,13 +1,16 @@
-﻿using OkalaCryptoQuote.Application.Abstractions;
+﻿using Microsoft.Extensions.Options;
+using OkalaCryptoQuote.Application.Abstractions;
 using OkalaCryptoQuote.Domain.Features.Quotes;
 
 namespace OkalaCryptoQuote.Application.Features.Quotes.GetQuote;
 
-public class GetQuoteHandler(IExchangeRatesApi exchangeRatesApi, ICoinMarketCapApi coinMarketCapApi) : IGetQuoteHandler
+public class GetQuoteHandler(
+    IExchangeRatesApi exchangeRatesApi,
+    ICoinMarketCapApi coinMarketCapApi,
+    IOptions<ExchangeRatesOptions> exchangeRatesOption) : IGetQuoteHandler
 {
     public async Task<Result<GetQuoteResponse>> GetQuote(GetQuoteRequest request, CancellationToken ct)
     {
-        const string baseCurrency = "USD";
         var validationResult = ValidateRequest(request);
         if (validationResult.IsSuccess == false)
         {
@@ -29,7 +32,7 @@ public class GetQuoteHandler(IExchangeRatesApi exchangeRatesApi, ICoinMarketCapA
         var prices = new Dictionary<string, decimal?>();
         foreach (var currency in ratesResult.Value.Rates.Keys)
         {
-            var baseRatio = ratesResult.Value.Rates[baseCurrency];
+            var baseRatio = ratesResult.Value.Rates[exchangeRatesOption.Value.BaseCurrency];
             if (ratesResult.Value.Rates.TryGetValue(currency, out var ratio))
             {
                 prices.Add(currency, cryptoInfoResult.Value.Price * ratio / baseRatio);
@@ -45,5 +48,8 @@ public class GetQuoteHandler(IExchangeRatesApi exchangeRatesApi, ICoinMarketCapA
         {
             return QuoteError.CryptoCodeIsEmpty;
         }
+
+        return Result.Success();
     }
+
 }

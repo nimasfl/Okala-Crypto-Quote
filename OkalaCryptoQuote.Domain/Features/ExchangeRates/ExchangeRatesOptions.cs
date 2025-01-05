@@ -6,4 +6,5 @@ public record ExchangeRatesOptions
     public string BaseUrl { get; set; }
     public string AccessKey { get; set; }
     public string Currencies { get; set; }
+    public string BaseCurrency { get; set; }
 }
