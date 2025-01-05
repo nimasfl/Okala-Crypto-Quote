@@ -11,12 +11,12 @@ public class Result
         }
 
         IsSuccess = isSuccess;
-        Error = error;
+        Error = error == Error.None ? null : error;
     }
 
     public bool IsSuccess { get; }
 
-    public Error Error { get; }
+    public Error? Error { get; }
 
     public static Result Success() => new(true, Error.None);
 
