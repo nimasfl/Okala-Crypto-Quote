@@ -42,9 +42,4 @@ public class Result<TValue>(TValue? value, bool isSuccess, Error error) : Result
 
     public static implicit operator Result<TValue>(Error error) => Failure<TValue>(error);
 
-
-    public static Result<TValue> ValidationFailure(Error error) =>
-        new(default, false, error);
-
-
 }
