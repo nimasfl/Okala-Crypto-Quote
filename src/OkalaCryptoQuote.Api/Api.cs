@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using OkalaCryptoQuote.Api.Middlewares;
+﻿using OkalaCryptoQuote.Api.Middlewares;
 using OkalaCryptoQuote.Domain.Features.CoinMarketCap;
 using OkalaCryptoQuote.Domain.Features.ExchangeRates;
 
@@ -12,13 +11,11 @@ public static class Api
         services.AddControllers();
         services
             .AddExceptionHandler<GlobalExceptionHandler>()
-            .AddValidatorsFromAssembly(Application.Application.Assembly)
             .AddProblemDetails()
             .ConfigureOption<ExchangeRatesOptions>(ExchangeRatesOptions.SectionName)
             .ConfigureOption<CoinMarketCapOptions>(CoinMarketCapOptions.SectionName)
             .AddEndpointsApiExplorer()
-            .AddSwaggerGen()
-            .AddValidatorsFromAssemblyContaining<Program>();
+            .AddSwaggerGen();
 
         return services;
     }

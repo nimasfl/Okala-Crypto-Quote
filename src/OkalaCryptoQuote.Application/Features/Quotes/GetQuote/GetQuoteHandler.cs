@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using OkalaCryptoQuote.Application.Abstractions;
+using OkalaCryptoQuote.Domain.Features.Quotes;
 
 namespace OkalaCryptoQuote.Application.Features.Quotes.GetQuote;
 
@@ -23,9 +24,13 @@ public class GetQuoteHandler(
         }
 
         var prices = new Dictionary<string, decimal?>();
+        if (!ratesResult.Value.Rates.TryGetValue(exchangeRatesOption.Value.BaseCurrency, out var baseRatio))
+        {
+            return QuotesError.BaseCurrencyIsInvalid;
+        }
+
         foreach (var currency in ratesResult.Value.Rates.Keys)
         {
-            var baseRatio = ratesResult.Value.Rates[exchangeRatesOption.Value.BaseCurrency];
             if (ratesResult.Value.Rates.TryGetValue(currency, out var ratio))
             {
                 prices.Add(currency, cryptoInfoResult.Value.Price * ratio / baseRatio);
