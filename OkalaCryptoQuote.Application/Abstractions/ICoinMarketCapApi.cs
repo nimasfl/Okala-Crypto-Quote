@@ -1,6 +1,8 @@
-﻿namespace OkalaCryptoQuote.Application.Abstractions;
+﻿using OkalaCryptoQuote.Domain.Features.CoinMarketCap;
 
-public class ICoinMarketCapApi
+namespace OkalaCryptoQuote.Application.Abstractions;
+
+public interface ICoinMarketCapApi
 {
-    
+    Task<Result<CryptoDetail>> GetCryptoDetail(string cryptoCode, CancellationToken ct);
 }

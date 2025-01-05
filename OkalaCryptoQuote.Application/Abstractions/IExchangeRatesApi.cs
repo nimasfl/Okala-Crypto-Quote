@@ -2,5 +2,5 @@
 
 public interface IExchangeRatesApi
 {
-    public Task<Result<LatestExchangeRateResponse>> GetLatestRates();
+    public Task<Result<LatestExchangeRateResponse>> GetLatestRates(CancellationToken ct);
 }

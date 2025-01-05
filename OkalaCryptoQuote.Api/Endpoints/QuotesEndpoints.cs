@@ -13,7 +13,7 @@ public class QuotesEndpoints: IEndpoint
         routes.MapGet("/", GetQuote);
     }
 
-    private static Result<GetQuoteResponse> GetQuote(IGetQuoteHandler getQuoteHandler,CancellationToken ct)
+    private static Task<Result<GetQuoteResponse>> GetQuote(IGetQuoteHandler getQuoteHandler,CancellationToken ct)
     {
         return getQuoteHandler.GetQuote(new GetQuoteRequest("BTC"), ct);
     }

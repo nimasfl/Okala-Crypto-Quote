@@ -1,3 +1,3 @@
 ﻿namespace OkalaCryptoQuote.Application.Features.Quotes.GetQuote;
 
-public record GetQuoteResponse(string A, string B, string C);
+public record GetQuoteResponse(string Slug, string Symbol, Dictionary<string, decimal?> Prices);

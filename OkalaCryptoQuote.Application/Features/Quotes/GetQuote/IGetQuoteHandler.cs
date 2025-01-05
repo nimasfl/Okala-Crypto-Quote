@@ -2,5 +2,5 @@
 
 public interface IGetQuoteHandler
 {
-    public Result<GetQuoteResponse> GetQuote(GetQuoteRequest request, CancellationToken cancellationToken);
+    public Task<Result<GetQuoteResponse>> GetQuote(GetQuoteRequest request, CancellationToken cancellationToken);
 }

@@ -4,12 +4,15 @@ namespace OkalaCryptoQuote.Infrastructure.HttpClients;
 
 public sealed class ExchangeRatesApi(HttpClient httpClient, IOptions<ExchangeRatesOptions> options) : IExchangeRatesApi
 {
-    public async Task<Result<LatestExchangeRateResponse>> GetLatestRates()
+    public async Task<Result<LatestExchangeRateResponse>> GetLatestRates(CancellationToken ct)
     {
+        var currencies = new List<string> { "USD" };
+        currencies.AddRange(options.Value.Currencies.Split(','));
+        var currenciesString = string.Join(',', currencies);
         try
         {
-            var requestUrl = GenerateUrl("/latest?&symbols=USD,EUR,BRL,GBP,AUD");
-            var result = await httpClient.GetFromJsonAsync<LatestExchangeRateResponse>(requestUrl);
+            var requestUrl = GenerateUrl($"/latest?&symbols={currenciesString}");
+            var result = await httpClient.GetFromJsonAsync<LatestExchangeRateResponse>(requestUrl, ct);
             if (result is null || result.Success == false)
             {
                 return ExchangeRatesError.InvalidFormatResult;
